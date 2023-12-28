@@ -1,0 +1,19 @@
+.table{
+    width: 100%;
+    table-layout: auto;
+}
+
+.table thead th{
+    border-width: thin;
+}
+.table thead th:last-child{
+    border-width: thin;
+}
+.table tbody tr td{
+    border-width: thin;
+}
+
+tr,
+th {
+    white-space: nowrap
+}

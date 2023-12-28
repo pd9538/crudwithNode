@@ -1,0 +1,81 @@
+<div class="container">
+  <div class="row mt-3" >
+    <div class="col-md-5">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-center">Sample Form</h3>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="registerF" (ngSubmit)="submitF()">
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label class="fw-normal">Name</label>
+            <input type="text" formControlName="name" placeholder="Enter Name" class="form-control">
+            <small class="text-danger" *ngIf="f['name'].touched && f['name'].invalid">
+              <div *ngIf="f['name'].errors && f['name'].errors['required']">Name is required.</div>
+          </small>
+          </div>
+          <div class="col-md-6">
+            <label class="fw-normal">Address</label>
+            <textarea formControlName="address" placeholder="Enter Address" class="form-control"></textarea>
+            <small class="text-danger" *ngIf="f['address'].touched && f['address'].invalid">
+              <div *ngIf="f['address'].errors && f['address'].errors['required']">Address is required.</div>
+          </small>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label class="fw-normal">Email</label>
+            <input type="text" formControlName="email" placeholder="Enter Email" class="form-control">
+            <small class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+              <div *ngIf="f['email'].errors && f['email'].errors['required']">Email is required.</div>
+              <div *ngIf="f['email'].errors && f['email'].errors['pattern']">Invalid Email</div>
+          </small>
+          </div>
+          <div class="col-md-6">
+            <label class="fw-normal">Mobile</label>
+            <input type="text" formControlName="mobile" placeholder="Enter Mobile" class="form-control" maxlength="10">
+            <small class="text-danger" *ngIf="f['mobile'].touched && f['mobile'].invalid">
+              <div *ngIf="f['mobile'].errors && f['mobile'].errors['required']">Mobile is required.</div>
+              <div *ngIf="f['mobile'].errors && f['mobile'].errors['pattern']">Mobile must be in digit format.</div>
+          </small>
+          </div>
+        </div>
+        <div class="text-center mt-2">
+        <button class="btn btn-sm btn-primary" type="submit" style="margin-right: 10px;">{{iseditMode?'Update':'Send'}}</button>
+        <button class="btn btn-sm btn-info text-white" type="reset">Reset</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+    <div class="col-md-7 text-right" *ngIf="data!=''">
+        <h3 class="text-center mb-3">Customer Details</h3>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+              <thead class="text-center thead-light">
+                <th>#</th>
+                <th>Name</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let row of data;let i=index;">
+                  <td>{{i+1}}</td>
+                  <td>{{row.name}}</td>
+                  <td>{{row.mobile}}</td>
+                  <td>{{row.address}}</td>
+                  <td>{{row.email}}</td>
+                  <td>
+                    <a (click)="updateData(row._id)"><i class='fa fa-edit brand-color' aria-hidden="true" style=" padding-right: 20px; cursor: pointer;"></i></a>
+                    <a (click)="deleteData(row._id)"><i class='fa fa-trash text-danger' style=" cursor: pointer;" aria-hidden="true"></i></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+    </div>
+  </div>
+</div>
